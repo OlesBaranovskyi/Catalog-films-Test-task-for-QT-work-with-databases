@@ -1,8 +1,10 @@
 #include "widget_window.h"
 
 widget_window::widget_window(QWidget *parent) : QWidget(parent)
-{   create_database();
-//    create_table();
+{   /*if(create_database())
+    {
+    create_table();
+    }*/
     lay_button=new QVBoxLayout;
     lay = new QHBoxLayout;
     lay_all = new QVBoxLayout;
@@ -19,10 +21,7 @@ widget_window::widget_window(QWidget *parent) : QWidget(parent)
     w_info = new dialog_info;
     lay_all->addWidget(filter);
     resize(700,50);
-   //  db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setDatabaseName("testFilms");
-    //db.open();
-//if(!db.open())qDebug()<<"Problem wish open dtabase";
+
 
 
 model = new QSqlTableModel;
@@ -152,18 +151,13 @@ temp_model.submitAll();
 
 }
 
-bool widget_window::create_database()
+ bool widget_window::create_database()
 {
-//    db.addDatabase("SQLITE");
-//   db.setDatabaseName("testFilms");
+
 
 
      db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("testFilms");
-   // db.open();
-//if(!db.open())qDebug()<<"Problem wish open dtabase";
-
-
 
    if(!db.open()){
       QMessageBox::information(0,"Ошибка ","Ошибка открытия базы");
@@ -173,17 +167,17 @@ bool widget_window::create_database()
    return true;
 }
 
-//bool widget_window::create_table()
-//    {
-//        QSqlQuery query;
-//        QString str="create table films (название text not null, режиссер text not null,год integer,рейтинг integer, описание text);";
-//        if(!query.exec(str)){
-//    QMessageBox::information(0,"Ошибка ","Ошибка содания таблицы");
-//       return false;
-//        }
-//    QMessageBox::information(0,"Ok ","Таблица создана ");
-//    return true;
-//    }
+ bool widget_window::create_table()
+    {
+        QSqlQuery query;
+        QString str="create table films (название text not null, режиссер text not null,год integer,рейтинг integer, описание text);";
+        if(!query.exec(str)){
+    QMessageBox::information(0,"Ошибка ","Ошибка содания таблицы");
+       return false;
+        }
+    QMessageBox::information(0,"Ok ","Таблица создана ");
+    return true;
+    }
 
 
 

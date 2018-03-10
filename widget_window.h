@@ -18,12 +18,12 @@ class widget_window : public QWidget
 {
     Q_OBJECT
 
-    QSqlDatabase db;//:: dbQSqlDatabase::addDatabase("QSQLITE");
+   static  QSqlDatabase db;
     filterWidget* filter;
     QSqlTableModel* model;
     my_model* myModel;
     QTableView* view;
-    //QSqlDatabase db;
+
     dialog_info* w_info;
     my_dialog* my_dialog_add;
 
@@ -39,8 +39,8 @@ public:
 bool add_new_row();
 bool add(QString name, QString producer, int year, int reit);
 void show_info();
-bool create_database();
-bool create_table();
+static bool create_database();
+static bool create_table();
 
 
 signals:
